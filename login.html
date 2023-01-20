@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table  align="center" valign="middle" height="300px">
+      <td align="center">
+    로긴아이디<input type="text" id="idin" name="idin"><br>
+    비밀번호&nbsp;&nbsp;&nbsp;<input type="text" id="pasin" name="pasin"><br><br>
+    <button style="height: 40px; width: 100;" id="sh">show</button><br>
+</td>  
+</table><br>
+<table align="center" id = "tdlData" border="1">
+    <tr><td><input type="radio" id="male" name="gender" value="남자">남자</td></tr>
+    <tr></tr><td><input type="radio" id="female" name="gender" value="여자">여자</td></tr>
+    <tr><td align="center"><laber id="lbl">No content</laber></td></tr>
+    <tr><td><div style="width:200px; height:200px; border: 1px solid red;" id="dvArea" ></div></td></tr>
+    <tr><td align="center"><input align="center" type="button" id="btnSet" value="div채우기"></td></tr>
+</table><br>
+<select id="country" size="5">
+    <option value="KOREA">대한민국</option>
+    <option value="USA">미국</option>
+    <option value="FRA">프랑스</option>
+    <option value="ITA">이탈리아</option>
+</select><br>
+<label id="lblCountry"></label>
+<input type="checkbox" id="chkMarriage">미혼
+<button id="btnCheck">Set Checked</button>
+
+
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(document)
+    .ready(function(){
+        alert('웹페이지가 로드 되었습니다.'); //초기화 웹페이지가 시작되자마자 실행된다.
+    })
+    // .on('click','#btnCheck',function(){
+    //     $('#chkMarriage').prop('checked',false);
+    // })
+    .on('click','#chkMarriage',function(){
+        let str = $(this).prop('checked');
+        $('#lblCountry').text(str);
+        
+    })
+    console.log()
+    .on('click','[name=gender]',function(){
+        let str = $(this).val();
+        $('#lbl').text(str);
+        if(str=='여자'){
+            $('#male').prop('type','button');
+        }
+        if(str=='남자'){
+            $('#female').prop('type','button');
+        }
+    })
+    .on('click','#country',function(){
+        let str1=$(this).val();
+        let str2=$(this).find('option:selected').text();
+        $('#lblCountry').text('value '+str1+' text '+str2);
+    })
+    .on('click','#btnSet',function(){
+        $('#dvArea').html('<tr align="center"><td><input type=button id=btnClear value="지우기"></td></tr>');
+    })
+    .on('click','#btnClear',function(){
+        $('#dvArea').html('');
+    })
+    .on('click','#sh',function(){
+        let userid = $('#idin').val();
+        let passcode=$('#pasin').val();
+        let str='로긴아이디:'+userid+'\n비밀번호:'+passcode;
+        alert(str);
+    })
+    .on('click','#idin',function(){
+        $('#idin').val('제자리');
+    })
+    .on('click','#pasin',function(){
+        $('#pasin').val('human123');
+    })
+    ;
+
+    // let bu = document.getElementById('sh');
+    // lo=null;
+    // pa=null;
+    // bu.addEventListener('click',function(){
+    //     lo = document.getElementById('idin');
+    //     pa = document.getElementById('pasin');
+    //     if(lo.value==''&&pa.value==''){
+    //         alert("아이디와 비밀번호를 입력하시오");
+    //     }else if(lo.value==''){
+    //         alert("아이디를 입력하시오");
+    //     }else if(pa.value==''){
+    //         alert("비밀번호를 입력하시오");
+    //     }
+    //     else{
+    //         alert("로긴아이디: "+lo.value+"\n비밀번호: "+pa.value);
+    //     }
+    // });
+</script>
+</html>
