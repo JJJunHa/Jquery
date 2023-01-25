@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table{border-collapse:collapse;}
+    td{border:1px solid blue;}
+</style>
+<body>
+    <label>이름</label><input type="text" id="name"><br>
+    <laber>모바일</laber><input type="text" id="mobile"><br><br>
+    <button id="btnInput"></button>
+    <table>
+        <tr><td>이름</td><td>전화번호</td></tr>
+    </table>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(document)
+    .on('click','#btnInput',function(){
+        name=$('#name').val();
+        mobile=$('#mobile').val();
+        $('table').append('<tr><td>'+$('#name').val()+'</td><td>'+mobile+'</tr>')
+            $('#name').val('');
+            $('#mobile').val('');
+    })
+</script>
+</html>

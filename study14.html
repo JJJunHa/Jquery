@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    td{
+        width: 40px;height: 40px;text-align: center;
+    }
+</style>
+<body>
+<button id="btnStart">Start</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+// $(document)
+// .on('click','#btnStart',function(){
+//     num=1;
+//     for(i=0; i<$('#tblData tr').length; i++){
+//         if(i%2==0){
+//             for(j=0; j<$('#tblData tr:eq('+i+') td').length; j++){
+//             $('#tblData tr:eq('+i+') td:eq('+j+')').text(num++);
+//             }
+//         }else{
+//             for(j=$('#tblData tr:eq(0) td').length-1; j>=0; j--){
+//             $('#tblData tr:eq('+i+') td:eq('+j+')').text(num++);
+//             }
+//         }
+//       }
+    // num=1;
+    // $('#tblData tr').each(function(){
+    //     $(this).find('td').each(function(){
+    //         $(this).text(num++);
+    //     })
+    // })
+// })
+// $(document)
+// .on('click','#btnStart',function(){
+//     $('#tblData tr:odd').css({'background-color':'yellow', 'color':'red'});
+//     num = 1;
+//     for(i=0;i<$('#tblData tr').length;i++){
+//         for(j=0;j<$('#tblData tr:eq('+i+') td').length;j++){
+
+//             lastindex = $('#tblData tr:eq('+i+') td').length - 1;
+
+//             if(i%2==0){
+//                 $('#tblData tr:eq('+i+') td:eq('+j+')').text(num++);
+//             } else{
+//                 $('#tblData tr:eq('+i+') td:eq('+(lastindex-j)+')').text(num++);
+//             }
+//         }
+//     }
+// })
+num=1;
+$(document)
+.on('click','td',function(){
+    if($(this).text()==''){
+        $(this).text(num++);
+    }
+})
+.on('click','#btnStart',function(){
+    m=prompt('행 갯수를 입력하시오');
+    m=parseInt(m);
+    n=prompt('열 갯수를 입력하시오');
+    n=parseInt(n);
+    tdstr='';
+    str='';
+        for(j=0; j<m; j++){
+            str+='<tr>'
+                for(i=0; i<n; i++){
+                    str+='<td></td>'
+                }
+            str+='</tr>'
+            }
+    $(this).before('<table id=tblData border="1">'+str+'</table>');
+})
+</script>
+</html>
