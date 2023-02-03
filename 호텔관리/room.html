@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <title>호텔객실예약관리 -객실관리</title>
+</head>
+<style>
+    input{
+        width: 200px;
+        height: 30px;
+    }
+    button
+    {
+        width: 100px;
+        height: 30px;
+        font-weight: bolder;
+        font-size: 1.7ch;
+    }
+    .typebutton{
+        width: 110px;
+        background-color: crimson;
+        color: aliceblue;
+    }
+</style>
+<body style="background-color: rgb(11, 12, 11); color: aliceblue;">
+    <table align="center">
+        <tr>
+            <td style="width: 33%;">객실관리&nbsp;<a href="book.html">예약관리</a></td>
+            <td style="width: 33%;"><h1 style="text-align: center; font-size: 50px; ">호텔객실예약관리</h1></td>
+            <td align="right" valign="top">Created by 김준하<br>
+                @CopRight free</td>
+            <tr><tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr></tr></tr>
+        </tr>
+    </table>
+    <table style="height: 600px;" align="center" border="1">
+        <tc>
+        <tr valign="top">
+            
+            
+            <td rowspan="6"><tc colspan="3">
+                <table border="1">
+                    <tr>
+                        <td>
+                            <select id="roomdb" size="20" style="width: 240px; font-size: 2ch;">
+                
+                            </select>
+            </td>
+            </tr>
+            <tr style="height: 150px;">
+                <td valign="middle" align="center"><button class="typebutton" id="typebutton">객실타입관리</button>&nbsp;</td>
+            </tr>
+            </table>
+            
+            </tc>
+            </td>
+            <td rowspan="6"><tc colspan="3">
+                
+                
+            </tc>
+            </td>
+            
+            
+            
+        </tc>
+        <tc >
+            <td style="font-size: 2ch; font-weight: bolder;">
+                &nbsp;&nbsp;객실번호&nbsp;&nbsp;<input type=text id="roomnum" name="name" style="width: 120px;">
+            </td>
+                <tr valign="top">
+                    <td style="font-size: 2ch; font-weight: bolder;">
+                        &nbsp;&nbsp;객실명&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=text id="roomname" name="name" style="width: 120px;">
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td style="font-size: 2ch; font-weight: bolder;">
+                        &nbsp;&nbsp;객실타입&nbsp;&nbsp;
+                        <select id="roombo" size="1" style="width: 130px; height: 30px;">
+                            
+                            </select><br>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td style="font-size: 2ch; font-weight: bolder;">
+                        &nbsp;&nbsp;숙박인원&nbsp;&nbsp;<input type=text id="roomperson" name="name" style="width: 120px;">명
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td style="font-size: 2ch; font-weight: bolder;">
+                        &nbsp;&nbsp;1박요금&nbsp;&nbsp;&nbsp;<input type=text id="roomprice" name="name" style="width: 120px;">원
+                    </td>
+                </tr>
+
+                <tr align="center" valign="top">
+                    <td colspan="">
+                        <button id="roombtnS">추가</button>&nbsp;
+                        <button id="roombtnR">삭제</button>&nbsp;
+                        <button id="roombtnO">비우기</button></td>&nbsp;
+                </tr>
+                
+        </tc> 
+
+        
+        </tr>
+    </table>
+    <!---------------------------------------------------------- 객실타입관리 -->
+    <div id="typeDlg" style="display: none;">
+        
+        <table style="height: 600px;" align="center">
+            <tc>
+            <tr>
+                <td rowspan="3"><tc colspan="3">
+                    <select size="20" style="width: 240px; font-size: 2ch;" id="box">
+                        
+                    </select>
+                </tc>
+                </td>
+            </tc>
+            <tc>
+                <td valign="bottom" style="font-size: 3ch; font-weight: bolder;">
+    
+                    &nbsp;&nbsp;객실타입번호&nbsp;<input type=text id="num" name="name"><br><br>
+                </td>
+                    <tr>
+                        <td valign="top" style="font-size: 3ch;  font-weight: bolder;">
+                            &nbsp;&nbsp;객실타입명&nbsp;&nbsp;&nbsp;&nbsp;<input type=text id="name" name="name">
+                        </td>
+                    </tr>
+                    
+                    <tr align="center" valign="top">
+                        <td colspan="3">
+                            <button id="btnS">추가</button>&nbsp;
+                            <button id="btnR">삭제</button>&nbsp;
+                            <button id="btnO">비우기</button>&nbsp;
+                        </td>
+                    </tr>
+                    
+               
+            </tc> 
+            </tr>
+        </table>
+        <div id="alertDlg" style="size: 70; display: none; background-color: red; color: rgb(13, 14, 13);border: 1 solid white;">
+            <label id="lblMessage"></label>
+            <!-- <button id="btnClose">닫기</button> -->
+        </div>
+    </div>
+    
+</body>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    
+    $(document)
+    .on('click','#realroombox option:selected',function(){
+        str=$(roombox).text();
+        console.log(str);
+        $('#roomname').val(str);
+        $('#roomnum').val($(roombox).val());
+        $('#roomperson').val('');
+        $('#roomprice').val('');
+    })
+    .on('click','#roomdb option:selected',function(){
+        
+        console.log($(this).val());
+        $('#roomname').val($(this).data('id'));
+        $('#roomnum').val($(this).val());
+        $('#roomperson').val($(this).data('p'));
+        $('#roomprice').val($(this).data('pr'));
+        $('#roombo').val($(this).data('t'));
+        console.log($(this).data('p'))
+        $('#roombo option').each(function(){
+            if($('#roomdb option:selected').data('t')==$('#roombo').text()){
+                $('#roombo').prop('selected',true);
+                return false;
+            }
+        });
+    })
+    .on('click','#roombtnS',function(){
+        id=$('#roomname').val();
+        ps=$('#roomnum').val();
+        type=$('#roombo option:selected').text();
+        person=$('#roomperson').val();
+        price=$('#roomprice').val();
+        if(!id==''&&!ps==''){
+        $('#roomdb').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'"" > 객실번호: '+ps+'</option>');
+        $('#roomdb').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 객실명: '+id+'</option>');
+        $('#roomdb').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 타입: '+type+'</option>');
+        $('#roomdb').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 숙박인원: '+person+'</option>');
+        $('#roomdb').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 1박요금: '+price+'</option>');
+        $('#roomdb').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""></option>');
+
+        id=$('#roomnum').val('');
+        ps=$('#roomname').val('');
+        person=$('#roomperson').val('');
+        price=$('#roomprice').val('');
+        }
+    })
+    // .on('change','#roombo',function(){
+    //     strr=$("#roombo option:selected").text();
+    //     console.log(strr);
+    // })
+    .on('click','#roombtnR',function(){
+        // $('#name').val();
+        x=$('#roomdb option:selected').val();
+        // $('#person').val();
+        // $('#price').val();
+        console.log(x);
+        $('[value='+x+']').remove();
+    })
+    .on('click','#roombtnO',function(){
+        id=$('#roomnum').val('');
+        ps=$('#roomname').val('');
+        $('#roomperson').val('');
+        $('#roomprice').val('');
+    })
+
+
+    //////////////////////////////////////////////////객실타입
+    .on('click','#btnS',function(){
+        if($('#name').val()==''||$('#num').val()==''){
+            showDlg('객실타입번호와 객실타입명을 모두 입력하시오');
+            return false;
+        }
+        idd=$('#name').val();
+        id=$('#name').val();
+        pss=$('#num').val();
+        ps=$('#num').val();
+        if(!id==''&&!ps==''){
+        $('#box').append('<option id="roombox" name="'+pss+'" value="'+pss+'"">'+pss+'.'+idd+'</option>');
+        $('#roombo').append('<option id="roombox" name="'+ps+'" value="'+ps+'"">'+id+'</option>');
+        id=$('#num').val('');
+        ps=$('#name').val('');
+        idd=$('#num').val('');
+        pss=$('#name').val('');
+        console.log(id)
+        }
+    })
+    .on('click','#btnR',function(){
+        id=$('#num').val();
+        console.log(id);
+        $('[value='+id+']').remove();
+        id=$('#num').val('');
+        ps=$('#name').val('');
+    })
+    .on('click','#btnO',function(){
+        id=$('#num').val('');
+        ps=$('#name').val('');
+    })
+    .on('click','#roombox',function(){
+        typename=$(this).text();
+        typenamear=typename.split('.');
+
+        $('#name').val(typenamear[1]);
+        $('#num').val($(this).val());
+    })
+    .on('click','#typebutton',function(){
+        $('#typeDlg').dialog({
+            beforeClose:function(){
+            // (1) selRoomType empty
+            // (2) selTtpe => selRoomType
+            
+        // $('#roomname').val($('#name').val());
+        // $('#roomnum').val($('#num').val());
+        $('#roomperson').val('');
+        $('#roomprice').val('');
+            
+        },
+            
+            title:'객실타입관리',
+            modal:true,
+            width:700
+        });
+    })
+    // $(window)
+    // .unload(function(){
+    //     console.log('hi')
+    // })
+    // .on('click','#btnClose',function(){
+    //     $('#alertDlg').dialog('close');
+    // })
+    function showDlg(str){
+        $('#lblMessage').text(str);
+        $('#alertDlg').dialog({
+            'title':'알림창',
+        'position':{'my':"left bottom",at:"left top",of:$('#num')},
+        modal:true,
+        buttons:[
+            {
+                text:'OK',
+                click:function(){
+                    $(this).dialog('close');
+                }
+            },
+            {
+                text:'Close',
+                click:function(){
+                    alert('안닫힘');
+                }
+            }
+        ],
+        
+    });
+    
+
+    }
+    </script>
+    
+</html>

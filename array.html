@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        table { border-collapse: collapse;}
+        td { width: 40px; height: 40px; border: 1px solid blue; text-align: center;}
+    </style>
+    <body align="center">
+        <table align="center" id="tblData">
+            <tr>
+                <td>10</td><td>-5</td><td>3</td><td>7</td><td>1</td><td>0</td><td>-6</td>
+                <td>4</td><td>9</td><td>2</td>
+            </tr>
+            
+        </table><br>
+        <button id="btnStartSort">정렬시작</button>
+        <button id="btnStartSort2">정렬시작</button>
+    </body>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        i = 0;
+		j = 0;
+		temp = 0 ;
+       $(document)
+       .on('click','#btnStartSort',function(){
+        console.log($('#tblData tr td').length);
+        console.log($('#tblData tr').length);
+        
+        // for(i=0; i<$('#tblData td').length; i++) {
+		// 	for(j=i+1; j<$('#tblData td').length; j++) {
+		// 		if($(('#tblData td:eq('+i+')')).text()<$(('#tblData td:eq('+j+')')).text()) {
+		// 			temp=$('#tblData td:eq('+i+')').text();
+		// 			$('#tblData td:eq('+i+')').text($('#tblData td:eq('+j+')').text());
+		// 			$('#tblData td:eq('+j+')').text(temp);	
+		// 		}
+		// 	}
+		// }
+            interval=setInterval(function b(){
+                
+                    if(i<$('#tblData tr td').length){
+                        j=1+i;
+                        while(j<$('#tblData tr td').length){
+                            num1=parseInt($('#tblData tr:eq('+0+') td:eq('+i+')').text());
+                            num2=parseInt($('#tblData tr:eq('+0+') td:eq('+j+')').text());
+                            if(num1>num2){
+                                 temp=$('#tblData tr:eq('+0+') td:eq('+i+')').text();
+					            $('#tblData tr:eq('+0+') td:eq('+i+')').text($('#tblData tr:eq('+0+') td:eq('+j+')').text());
+					            $('#tblData tr:eq('+0+') td:eq('+j+')').text(temp);	
+                                }
+                        j++;
+                    }
+                    i++;
+                }
+            
+            },1000);
+        
+       })
+       .on('click','#btnStartSort2',function(){
+
+       })
+
+    </script>
+</html>

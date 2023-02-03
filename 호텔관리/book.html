@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호텔객실예약관리 -예약관리</title>
+</head>
+<style>
+    body
+    {
+        background-color: rgb(5, 7, 5); color: aliceblue;
+    }
+    input{
+        width: 120px;
+    }
+    td{
+        font-weight: bolder;
+    }
+    button{
+        width: 70px;
+    height: 30px;
+    font-weight: bolder;
+    font-size: 1.7ch;
+    }
+</style>
+<body>
+    
+    <table align="center">
+        <tr>
+            <td style="width: 33%;"><a href="book.html">객실타입관리</a>&nbsp;<a href='room.html'>객실관리</a>&nbsp;예약관리</td>
+            <td style="width: 33%;"><h1 style="text-align: center; font-size: 50px;">호텔객실예약관리</h1></td>
+            <td align="right" valign="top">Created by 김준하<br>
+                @CopRight free</td>
+            <tr><tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr></tr></tr>
+        </tr>
+    </table>
+    <table align="center" style="width: 70%; height: 600px;"  >
+        <td style="width: 34%;"  align="center" valign="top">
+            <table>
+        
+                    <tr align="center">
+                        <td>
+                            체크인&nbsp;&nbsp;&nbsp;<input id="time" type="datetime-local">~<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            체크아웃&nbsp;&nbsp;&nbsp;&nbsp;<input id="timeout" type="datetime-local"><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            객실타입&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select id="bo" style="width: 120px;">
+                            <option value="Suite Room">Suite Room</option><br>
+                            <option value="Family Room">Family Room</option<br>
+                            <option value=">Deluxe Room">Deluxe Room</option><br>
+                            <option value="Single Room">Single Room</option><br>
+                            <option value="Double Room">Double Room</option><br>
+                            </select><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <button size="3" id="btnR">찾기</button><br>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                        <select id="roombox" size="15" style="width: 240px; font-size: 2ch;">
+                            <option value="100">백두산</option><br>
+                            <option value="101">한라산</option<br>
+                            <option value="102">광덕산</option><br>
+                            <option value="103">태조산</option><br>
+                            <option value="104">봉서산</option><br>
+                            </select>
+                        </td>
+                    </tr>
+                
+
+            </table>
+        </td>
+        <td style="width: 34%;" align="center" valign="top">
+            <table>
+                <tr>
+                    <td>체크인<br><br></td><td><input id="chein" type="text" style="width: 10pc;">~<br><br></td>
+                </tr>
+                <tr>
+                    <td>체크아웃<br><br></td><td><input id="cheo" type="text" style="width: 10pc;"><br><br></td>
+                </tr>
+                 <tr>
+                    <td>객실번호<br><br></td><td><input id="num" type="text" style="width: 3pc;"><br><br></td>
+                </tr>
+                <tr>
+                    <td>객실명<br><br></td><td><input id="name" type="text"><br><br></td>
+                </tr>
+                <tr>
+                    <td>객실타입<br><br></td><td><input id="tye" type="text"><br><br></td>
+                </tr>
+                <tr>
+                    <td>숙박인원<br><br></td><td><input id="per" type="text" style="width: 2pc;">명<br><br></td>
+                </tr>
+                <tr>
+                    <td>대표자명<br><br></td><td><input id="rep" type="text" style="width: 4pc;"><br><br></td>
+                </tr>
+                <tr>
+                    <td>연락처<br><br></td><td><input id="pohn" type="text" style="width: 4pc;"><br><br></td>
+                </tr>
+                <tr>
+                    <td>총숙박요금<br><br></td><td><input id="pric" type="text" style="width: 4pc;">원<br><br></td>
+                </tr>
+                 <tr>  
+                    <td align="center" colspan="2">
+                        <br><br><br><br>
+                        <button id="btnR">완료</button>&nbsp;&nbsp;
+                        <button id="btnC">취소</button>&nbsp;&nbsp;
+                        <button id="btnO">비우기</button>&nbsp;&nbsp;
+                        
+                    </td>
+                </tr> 
+                
+
+            </table>
+        </td>
+        <td style="width: 33%;"align="center">
+            <table>
+                <tr>
+                    <td>
+                    예약된 객실목록
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <select id="db" size="30" style="width: 240px; font-size: 2ch;">
+                        
+                        </select>
+                    </tc>
+                    </td>
+                </tc>
+
+            </table>
+        </td>
+    </table>
+    
+</body>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+    $(document)
+    .on('click','#roombox option:selected',function(){
+        let str=$(this).text();
+        console.log(str);
+        $('#name').val(str);
+        $('#num').val($(this).val());
+        $('#person').val('');
+        $('#price').val('');
+    })
+    .on('change','#bo',function(){
+        let str=$("#bo option:selected").text();
+        console.log(str);
+        $('#tye').val(str);
+    })
+    .on('change','#time',function(){
+        let str=$("#time").val();
+        console.log(str);
+        $('#chein').val(str);
+    })
+    .on('change','#timeout',function(){
+        let str=$("#timeout").val();
+        console.log(str);
+        $('#cheo').val(str);
+    })
+    .on('click','#btnR',function(){
+        id=$('#name').val();
+        ps=$('#num').val();
+        type=$('#tye').val();;
+        person=$('#per').val();
+        price=$('#pric').val();
+        name=$('#rep').val();
+        timei=$('#chein').val();
+        timeo=$('#cheo').val();
+        ponh=$('#pohn').val();
+        if(!id==''&&!ps==''){
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'"" > 객실번호: '+ps+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 객실명: '+id+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 타입: '+type+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 숙박인원: '+person+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 1박요금: '+price+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 체크인: '+timei+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 체크아웃: '+timeo+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 대표자명: '+name+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""> 휴대폰번호: '+ponh+'</option>');
+        $('#db').append('<option data-t="'+type+'" data-p="'+person+'" data-pr="'+price+'" data-id="'+id+'" name="'+ps+'" value="'+ps+'""></option>');
+
+        id=$('#name').val('');
+        ps=$('#num').val('');
+        type=$('#tye').val('');;
+        person=$('#per').val('');
+        price=$('#pric').val('');
+        name=$('#rep').val('');
+        timei=$('#chein').val('');
+        timeo=$('#cheo').val('');
+        ponh=$('#pohn').val('');
+
+        }
+    })
+    </script>
+</html>
